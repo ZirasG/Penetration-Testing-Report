@@ -35,7 +35,7 @@
 
 1. <b> Executive Summary </b><br>
 
-<i><b>Offensive Security</b></i> was contracted by Marketplace industry to conduct a penetration test in order to determine its exposures to a targeted attack. All activities were conducted in a manner that simulated a malicious actor engaged in a targeted attack against Marketplace industry.<br>
+<i><b>Ethical Security</b></i> company was contracted by Marketplace industry to conduct a penetration test in order to determine its exposures to a targeted attack. All activities were conducted in a manner that simulated a malicious actor engaged in a targeted attack against Marketplace industry.<br>
 
 <b>Target goals : </b>
 <ul>
@@ -67,105 +67,105 @@ b. <b>Timeline</b>
     <td>Active Reconnaissance</td>
     <td>Open Ports</td>
     <td>Moderate</td>
-    <td>25-05-22</td>
+    <td>25-06-22</td>
   </tr>
   <tr>
     <td>2</td>
     <td>Trying XSS in Website</td>
     <td>XSS</td>
     <td>High</td>
-    <td>26-05-22</td>
+    <td>26-06-22</td>
   </tr>
   <tr>
     <td>3</td>
     <td>Successful stored XSS</td>
     <td>XSS</td>
     <td>High</td>
-    <td>27-06-22</td>
+    <td>26-06-22</td>
   </tr>
   <tr>
     <td>4</td>
     <td>Session Hijacking with XSS</td>
     <td>Session Hijacking</td>
     <td>Extreme</td>
-    <td>28-06-22</td>
+    <td>27-06-22</td>
   </tr>
   <tr>
     <td>5</td>
     <td>Successful Privilege Escalation to Admin Account</td>
     <td>Session Hijacking</td>
     <td>Extreme</td>
-    <td>29-06-22</td>
+    <td>28-06-22</td>
   </tr>
   <tr>
     <td>6</td>
     <td>Information Exposure in URL</td>
     <td>Forced browsing</td>
     <td>High</td>
-    <td>29-06-22</td>
+    <td>28-06-22</td>
   </tr>
    <tr>
     <td>7</td>
     <td>Trying SQL injection in URL</td>
     <td>SQL Injection</td>
      <td>High</td>
-     <td>30-06-22</td>
+     <td>29-06-22</td>
   </tr>
    <tr>
     <td>8</td>
     <td>Successful SQL injection in URL</td>
     <td>SQL Injection</td>
      <td>Moderate</td>
-     <td>31-06-22</td>
+     <td>30-06-22</td>
   </tr>
    <tr>
     <td>9</td>
     <td>Exploit Database, tables, columns and data</td>
      <td>SQL Injection</td>
     <td>Moderate</td>
-     <td>31-06-22</td>
+     <td>30-06-22</td>
   </tr>
    <tr>
     <td>10</td>
     <td>Discover in table: Messages, in message content, a SSH password</td>
     <td>SQL Injection</td>
      <td>Extreme</td>
-     <td>01-06-22</td>
+     <td>30-06-22</td>
   </tr>
    <tr>
     <td>11</td>
     <td>SSH Connection</td>
     <td>Command Injection</td>
      <td>High</td>
-     <td>02-06-22</td>
+     <td>31-06-22</td>
   </tr>
   <tr>
     <td>12</td>
     <td>System file checking</td>
     <td>-</td>
      <td>-</td>
-     <td>02-06-22</td>
+     <td>31-06-22</td>
   </tr>
    <tr>
     <td>13</td>
     <td>Found a Tar wildcard file</td>
     <td>-</td>
      <td>-</td>
-     <td>02-06-22</td>
+     <td>01-07-22</td>
    </tr>
    <tr>
     <td>14</td>
     <td>Exploit tar wildcard and Privilege Escalation</td>
     <td>Privilege Escalation</td>
      <td>Moderate</td>
-     <td>03-06-22</td>
+     <td>02-07-22</td>
   </tr>
    <tr>
     <td>15</td>
     <td>System file checking</td>
     <td>-</td>
      <td>-</td>
-     <td>03-06-22</td>
+     <td>02-06-22</td>
   </tr>
    <tr>
     <td>16</td>
@@ -179,14 +179,14 @@ b. <b>Timeline</b>
     <td>Exploit Docker and Privilege Escalation to root</td>
     <td>Privilege Escalation</td>
      <td>Extreme</td>
-     <td>05-06-22</td>
+     <td>03-06-22</td>
   </tr>
    <tr>
     <td>18</td>
     <td>Analyze Findings</td>
     <td>-</td>
      <td>-</td>
-     <td>06-06-22</td>
+     <td>04-06-22</td>
   </tr>
    <tr>
     <td>19</td>
@@ -295,7 +295,7 @@ The practice of analyzing and validating Marketplace application accomplishes wh
 Penetration Testing is done in order to assess its vulnerability to a targeted attack. All operations were carried out in a way that imitated a malicious actor carrying out a targeted attack on the <b>Marketplace industry</b>.
 After the Penetration, team members can share status, goals, and test results thanks to reporting and analytics. Advanced tools incorporate project metrics and display the results in a dashboard. Teams can rapidly evaluate a project's overall health and monitor interactions between test, development, and other project parts.<br><br>
 2.	<b>Statement of Scope</b><br>
-We performed an assessment of the Offensive Security Services in Greece in order to provide detailed analysis of: identification of application, system and network vulnerabilities; gaps in IT security governance; assessment of patching methodologies; current network security capabilities and potential existing security incidents. The assessment and reporting will be based on the NIST 800-53 MODERATE security controls.<br><br>
+We performed an assessment of the Ethical Security Company Services in Greece in order to provide detailed analysis of: identification of application, system and network vulnerabilities; gaps in IT security governance; assessment of patching methodologies; current network security capabilities and potential existing security incidents. The assessment and reporting will be based on the NIST 800-53 MODERATE security controls.<br><br>
 
 <table>
   <tr>
@@ -307,55 +307,71 @@ We performed an assessment of the Offensive Security Services in Greece in order
     <td>Penetration Testing Marketplace's Website</td>
   </tr>
   <tr>
-    <td>2</td>
-    <td>Cross Site Scripting</td>
+    <td>Project Scope Description</td>
+    <td>Web Application – The Marketplace</td>
   </tr>
   <tr>
-    <td>3</td>
-    <td>Command Injection</td>
+    <td>Date Prepared</td>
+    <td>07 June 2022</td>
   </tr>
   <tr>
-    <td>4</td>
-    <td>Privilege Escalation</td>
+    <td>Prepared by:</td>
+    <td>George Ziras</td>
   </tr>
   <tr>
-    <td>5</td>
-    <td>Docker</td>
+    <td>Deadline for Questions</td>
+    <td>17 June 2022</td>
   </tr>
   <tr>
-    <td>6</td>
-    <td>Tar - Wildcard</td>
+    <td>Host names</td>
+    <td>https://marketplace.com</td>
   </tr>
   <tr>
-    <td>1</td>
-    <td>SQL Injection</td>
+    <td>IP addresses:</td>
+    <td>10.10.110.33</td>
   </tr>
   <tr>
-    <td>2</td>
-    <td>Cross Site Scripting</td>
+    <td>Agency:</td>
+    <td>Ethical Security Company Services</td>
   </tr>
   <tr>
-    <td>3</td>
-    <td>Command Injection</td>
+    <td>Assessment Category:</td>
+    <td>Risk Assessment</td>
   </tr>
   <tr>
-    <td>4</td>
-    <td>Privilege Escalation</td>
+    <td>Hours of Testing:</td>
+    <td>00:00 – 06:00</td>
   </tr>
   <tr>
-    <td>5</td>
-    <td>Docker</td>
+    <td>Number of Hours to Complete the Project:</td>
+    <td>156 Hours</td>
   </tr>
   <tr>
-    <td>6</td>
-    <td>Tar - Wildcard</td>
+    <td>Cost</td>
+    <td>23.658 €</td>
   </tr>
    <tr>
-    <td>5</td>
-    <td>Docker</td>
+    <td>Remediate Methodology: </td>
+    <td>OWASP Top 10</td>
   </tr>
   <tr>
-    <td>6</td>
-    <td>Tar - Wildcard</td>
+    <td>Attack Methodology:</td>
+    <td>Cyber Kill Chain& Pentest Phases</td>
   </tr>
 </table>
+
+3.	<b>Statement of Methodology</b><br><br>
+We used the <b>Open Web Application Security Project (OWASP)</b> framework that offers advice on how to create, buy, and maintain trustworthy and secure software applications. OWASP is well-known for its popular Top 10 list of web application security flaws. The OWASP Biggest 10 list of security vulnerabilities is based on developer community opinion on the top security dangers. Every few years, it is revised as hazards alter and new ones develop. <br>
+Some of these Web security vulnerabilities have been found at Marketplace’s Web Application, such as XSS, SQL Injection and Command Injection.<br>
+<b>Cross-Site Scripting (XSS)</b> attacks occur when:<br>
+1.	Data enters a Web application through an untrusted source, most frequently a web request.
+2.	The data is included in dynamic content that is sent to a web user without being validated for malicious content.
+The malicious content sent to the web browser often takes the form of a segment of JavaScript, but may also include HTML, Flash, or any other type of code that the browser may execute.
+SQL injection attack occurs when:
+1.	An unintended data enters a program from an untrusted source.
+2.	The data is used to dynamically construct a SQL query
+Command injection is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application. Command injection attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell. In this attack, the attacker-supplied operating system commands are usually executed with the privileges of the vulnerable application. Command injection attacks are possible largely due to insufficient input validation.
+4. Statement of Limitations
+Limitation of Time
+When we performed penetration testing, we had a timeboxed assessment that needed to be completed in a predefined time period. The testing team has to identify potential threats and vulnerabilities, and produce results within this specified time period. This time of period was:
+
