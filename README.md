@@ -426,7 +426,7 @@ When we performed penetration testing, we had a timeboxed assessment that needed
 </table>
 <br>
 <b>Limitation of Access</b><br>
-We had Limitation of Access because we performed Black box penetration test and not a White box network vulnerability assessment, which helps to expose security threats by attacking the network from different angles. Also, for applications, we could conduct code reviews that will help us discover security threats and weaknesses that might not be apparent from dynamic testing such as encryption algorithms, how passwords are stored, etc.<br>
+We had Limitation of Access because we performed Black box penetration test and not a White box network vulnerability assessment, which helps to expose security threats by attacking the network from different angles. Also, for applications, we could conduct code reviews that will help us discover security threats and weaknesses that might not be apparent from dynamic testing such as encryption algorithms, how passwords are stored, etc.<br><br>
 
 5.<b> Testing Narrative</b>
 <br>
