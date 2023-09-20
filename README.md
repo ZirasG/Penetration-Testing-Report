@@ -197,5 +197,165 @@ b. <b>Timeline</b>
   </tr>
 </table>
 
+c.	<b>Summary of the test Scope</b><br>
 
+The scope of this Penetration Test was limited to a single internet facing web application portal. This is a Marketplace application and the specific instantiation of the portal we were asked to test, was the vulnerabilities we could find. Also, we will perform a <b>black-box penetration testing</b> (pentesting) as external attackers-testers aiming at identifying vulnerabilities in the application and show exactly how. The landing page to the application under review was at the following address:
+<table>
+  <tr>
+    <th>Application	Authentication</th>
+    <th> Landing Page</th>
+  </tr>
+  <tr>
+    <td>The Marketplace Webpage</td>
+    <td>https://marketplace.com</td>
+  </tr>
+</table>
+<br>
+d.	<b>Testing Methodology Used and Summary of metrics and measures, including the number of findings, listed by severity level</b><br><br>
+<b>Firstly</b>, we used the <b>cyber kill chain</b> methodology, which is essentially a Lockheed Martin cybersecurity model that traces the stages of a cyber-attack, detects vulnerabilities, and assists security teams in stopping attacks at each point of the chain. The term kill chain was borrowed from the military, which refers to the framework of an attack. It consists of recognizing a target, dispatching it, making a judgment, issuing an order, and eventually destroying the target.
 
+![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/78affee0-4ef8-4f9a-8eb2-589a8cdd35a9)
+
+<b>Lockheed Martin’s original cyber kill chain model contained seven sequential steps:</b><br><br>
+<b>Phase 1: Reconnaissance</b><br>
+During the Reconnaissance phase, we scanned the Marketplace website with nmap tool and explored vulnerabilities and weaknesses that could be exploited within the network. <br>
+<b>Phase 2: Weaponization</b>
+During the Weaponization phase, we created an attack vector, such as remote access, XSS, SQL Injection or Command Injection that can exploit a known vulnerability.<br> 
+<b>Phase 3: Delivery</b><br>
+In the Delivery step, we launched the attacks. <br>
+<b>Phase 4: Exploitation</b><br>
+In the Exploitation phase, the malicious code is executed within the victim’s system.<br>
+<b>Phase 5: Installation</b><br>
+Immediately following the Exploitation phase, the malware or other attack vector will be installed on the victim’s system.<br>
+<b>Phase 6: Command and Control</b><br>
+In Command & Control, we have been able to use the exploits to assume remote control of a device or identity within the target network. <br>
+<b>Phase 7: Actions on Objective</b><br>
+In this stage, we took root privileges.<br><br>
+We also used Penetration Testing Phases from NIST SP 800-115. In this process, we used the information gathered during the discovery phase to gain initial access to a system. Once we establish a foothold, we manage to escalate our access until we gain complete administrative control of the system. 
+
+![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/a4f196b9-1a0b-41c0-aed7-293cf685fd4e)
+
+<b>Metrics and Measures</b><br><br>
+<b>Secondly</b>, we used the OWASP, or Open Web Application Security Project, which is a set of standards and guidelines for the security of web applications, and is often the starting point for IT personnel when initially venturing into the realm of penetration testing. OWASP provides several resources on its own to improve the security posture of both internal and external web applications by providing companies with a comprehensive list of vulnerability categories for web applications, as well as ways to mitigate or remediate them.<br><br>
+<b>The OWASP Top 10</b> is a standard awareness document for developers and web application security. It represents a broad consensus about the most critical security risks to web applications.<br>
+<table>
+  <tr>
+    <th>No.</th>
+    <th>Vulnerability</th>
+    <th>Severity</th>
+    <th>OWASP -Metrics and Measures </th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>SQL Injection</td>
+    <td>Extreme</td>
+    <td>https://owasp.org/www-community/attacks/SQL_Injection</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Cross Site Scripting</td>
+    <td>Extreme</td>
+    <td>https://owasp.org/www-community/attacks/xss/</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Command Injection</td>
+    <td>High</td>
+    <td>https://owasp.org/www-community/attacks/Command_Injection</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Privilege Escalation</td>
+    <td>Extreme</td>
+    <td>https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/03-Testing_for_Privilege_Escalation</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Docker</td>
+    <td>High</td>
+    <td>https://owasp.org/www-project-docker-top-1t0/</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Tar - Wildcard</td>
+    <td>Moderate</td>
+    <td>https://owasp.org/www-pdf-archive/OWASP_Testing_Guide_v3.pdf</td>
+  </tr>
+</table>
+
+e.	<b>Objectives of the testing effort, including the main topic or purpose of the test and report</b><br><br>
+The practice of analyzing and validating Marketplace application accomplishes what it is designed to do is known as software testing. The advantages of this testing include bug prevention, reduced development costs, and improved performance. The sooner development teams receive test feedback, the sooner they can address issues such as:
+<ul>
+  <li>Architectural flaws </li>
+  <li>Poor design decisions</li>
+  <li>Invalid or incorrect functionality</li>
+  <li>Security vulnerabilities</li>
+  <li>Scalability issues</li>
+</ul>  
+Penetration Testing is done in order to assess its vulnerability to a targeted attack. All operations were carried out in a way that imitated a malicious actor carrying out a targeted attack on the <b>Marketplace industry</b>.
+After the Penetration, team members can share status, goals, and test results thanks to reporting and analytics. Advanced tools incorporate project metrics and display the results in a dashboard. Teams can rapidly evaluate a project's overall health and monitor interactions between test, development, and other project parts.<br><br>
+2.	<b>Statement of Scope</b><br>
+We performed an assessment of the Offensive Security Services in Greece in order to provide detailed analysis of: identification of application, system and network vulnerabilities; gaps in IT security governance; assessment of patching methodologies; current network security capabilities and potential existing security incidents. The assessment and reporting will be based on the NIST 800-53 MODERATE security controls.<br><br>
+
+<table>
+  <tr>
+    <th>Criteria</th>
+    <th>Response</th>
+  </tr>
+  <tr>
+    <td>Project Title</td>
+    <td>Penetration Testing Marketplace's Website</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Cross Site Scripting</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Command Injection</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Privilege Escalation</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Docker</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Tar - Wildcard</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>SQL Injection</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Cross Site Scripting</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Command Injection</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Privilege Escalation</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Docker</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Tar - Wildcard</td>
+  </tr>
+   <tr>
+    <td>5</td>
+    <td>Docker</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Tar - Wildcard</td>
+  </tr>
+</table>
