@@ -52,6 +52,11 @@ a.	<b>Brief Summary of Findings</b><br><br>
 Initial reconnaissance of the <b>Marketplace’s</b> network resulted in the discovery of a few open TCP ports such as 22/TCP SSH Version: openSSH 7.6p1 Ubuntu0.3 and 80/TCP HTTP-Server-title: The Marketplace.<br><br>
 Steps:<br> (1) An examination of these ports revealed a <b>Cross Site Scripting (XSS), SQL Injection and Command Injection via SSH (Secure Shell) connection </b> vulnerabilities. Also, a <b>docker and a tar wildcard privilege escalation</b> vulnerability.<br> (2) After exploiting Marketplace’s webpage, we were able to gain access to an administration account with <b>session hijacking through XSS</b>.<br> (3) In addition, gaining access to the admin account we discovered that there is an <b>information exposure through query strings in URL</b>.<br> (4) The next move was to use <b>SQL injection commands in URL with Burp Suite tool</b> to exploit the database and take information. With the database’s exploitation we found database’s tables: <b> Users, usernames and passwords hashes and cracked them with John the Ripper tool </b>, also we found through database’s table:<b> <i>Messages</i>, a message to a user from the administrator/system for a SSH password change and the new password </b>.<br> (5) We continue with a <b>SSH connect to the specific user with the provided SSH password and we gain access to user’s system</b> with remote access through SSH connection.<br> (6) Finally, we <b>discovered a tar backup.tar * file in the user’s files and we exploit wildcard for privilege escalation to another user</b>. As we gain access to another user and found that he is <b>privileged to use docker, we exploit it with shell to escalate our privileges to root shell</b>.
 
+b. Timeline
+
+
+
+
 
 
 
