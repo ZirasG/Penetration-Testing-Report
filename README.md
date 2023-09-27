@@ -4,25 +4,25 @@
 <h3> Table of Contents </h3>
 
 - [Executive Summary](#executive-summary)
-- [Brief summary of findings](#brief-summary-of-findings)
-- [Timeline](#timeline)
-- [Summary of the test scope](#summary-of-the-test-scope)
-- [Testing methodology used and Summary of metrics and measures, including the number of findings, listed by severity level](#testing-methodology-used-and-summary-of-metrics-and-measures-including-the-number-of-findings-listed-by-severity-level)
-- [Metrics and Mesures](#metrics-and-measures)
-- [Objectives of the testing effort, including the main topic or purpose of the test and report](#objectives-of-the-testing-effort-including-the-main-topic-or-purpose-of-the-test-and-report)
+  - [Brief summary of findings](#brief-summary-of-findings)
+  - [Timeline](#timeline)
+  - [Summary of the test scope](#summary-of-the-test-scope)
+  - [Testing methodology used and Summary of metrics and measures, including the number of findings, listed by severity level](#testing-methodology-used-and-summary-of-metrics-and-measures-including-the-number-of-findings-listed-by-severity-level)
+  - [Metrics and Mesures](#metrics-and-measures)
+  - [Objectives of the testing effort, including the main topic or purpose of the test and report](#objectives-of-the-testing-effort-including-the-main-topic-or-purpose-of-the-test-and-report)
 - [Statement of Scope](#statement-of-scope)
 - [Statement of Methodology](#statement-of-methodology)
-- [Reference used methodology](#reference-used-methodology)
 - [Statement of Limitations](#statement-of-limitations)
 - [Testing Narrative](#testing-narrative)
 - [Findings](#findings)
-- [Calculating and documenting the risks of the vulnerabilities, Common Vulnerability Scoring system, CVSS.](#calculating-and-documenting-the-risks-of-the-vulnerabilities-common-vulnerability-scoring-system-cvss)
-- [OWASP Risk Rating Methodology for estimating the risk of a vulnerability](#owasp-risk-rating-methodology-for-estimating-the-risk-of-vulnerability)
+  - [Calculating and documenting the risks of the vulnerabilities, Common Vulnerability Scoring system, CVSS.](#calculating-and-documenting-the-risks-of-the-vulnerabilities-common-vulnerability-scoring-system-cvss)
+  - [OWASP Risk Rating Methodology for estimating the risk of a vulnerability](#owasp-risk-rating-methodology-for-estimating-the-risk-of-vulnerability)
 - [Findings and recommendations for remediation](#findings-and-recommendations-for-remediation)
-- [Technical details necessary for IT, information security, and development teams to use to address the issues.](#Providing technical details necessary for IT, information security, and development teams to use to address the issues - Recommendations)
-- [Conclusion](#conlusion)
+  - [Technical details necessary for IT, information security, and development teams to use to address the issues.](#providing-technical-details-necessary-for-it-information-security-and-development-teams-to-use-to-address-the-issues---recommendations)
+- [Conclusion](#conclusion)
+- [Disclaimer](#disclaimer)
  
-<h3> Executive Summary</h3>
+<h3>Executive Summary</h3>
 
 <i><b>Ethical Security</b></i> company was contracted by Marketplace industry to conduct a penetration test in order to determine its exposures to a targeted attack. All activities were conducted in a manner that simulated a malicious actor engaged in a targeted attack against Marketplace industry.<br>
 
@@ -420,6 +420,7 @@ Remote System Discovery (nmap)– Reconnaissance/Discovery
 For the purposes of this penetration test, Marketplace provided minimal information outside of the organizational <b>domain name: marketplace.com</b>. The intent was to closely simulate an adversary without any internal information. To avoid targeting systems that were not owned by Marketplace Industry, all identified assets were submitted for ownership verification before any attacks were conducted. 
 <br><br>
 In an attempt to identify the potential attack surface, we examined the name server of the marketplace.com domain name:
+
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/107d4c63-44b5-45c2-bd52-9e85a38f8631)
 <br>
 We discovered a few <b>open tcp ports such as 22/tcp SSH Version: openSSH 7.6p1 Ubuntu0.3 and 80/tcp HTTP-Server-title: The Marketplace.</b>
@@ -626,10 +627,8 @@ Full Documentation:<br>
 
 Full Documentation:<br>
 •	https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
-<br>
 
 <h3>Conclusion</h3>
-<br>
 <b>Marketplace industry</b> experienced a series of control failures, resulting in the total compromise of crucial corporate assets. If a malicious actor had exploited these flaws, they would have had a significant impact on Marketplace industry operations. Current password reuse policies and deployed access controls are insufficient to mitigate the effect of the reported vulnerabilities.<br>
 <br>
 The penetration test's precise objectives were stated as follows:<br>
