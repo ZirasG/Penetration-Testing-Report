@@ -2,38 +2,27 @@
 <h3>The Marketplace's infrastructure </h3>
 
 <h3> Table of Contents </h3>
-<ol type="1">
-  <li><b>Executive Summary</b></li>
-  <ol type="a">
-    <li>Brief summary of findings</li>
-    <li>Timeline</li>
-    <li>Summary of the test scope</li>
-    <li>Testing methodology used and Summary of metrics and measures, including the number of findings, listed by severity level</li>
-    <li>Objectives of the testing effort, including the main topic or purpose of the test and report</li>
-  </ol>
-  <li><b>Statement of Scope</b></li>
-  <li><b>Statement of Methodology</b></li>
-  <ol type="a">
-    <li>Reference used methodology</li>
-    <li>Open Web Application Security Project (OWASP) Testing Project</li>
-  </ol>
-  <li><b></b>Statement of Limitations</b></li>
-  <li><b>Testing Narrative</b></li>
-  <li><b>Findings</b></li>
-  <ol type="a">
-    <li>Calculating and documenting the risks of the vulnerabilities, Common Vulnerability Scoring system, CVSS.</li>
-    <li>OWASP Risk Rating Methodology for estimating the risk of a vulnerability</li>
-  </ol>
-  <li><b>Findings and recommendations for remediation</b></li>
-   <ol type="a">
-    <li>Technical details necessary for IT, information security, and development teams to use to address the issues.</li>
-  </ol>
-  <li><b>Conclusion</b></li>
-</ol>  
-<br>
-</br>
 
-1. <b> Executive Summary </b><br>
+- [Executive Summary](#executive-summary)
+- [Brief summary of findings](#brief-summary-of-findings)
+- [Timeline](#timeline)
+- [Summary of the test scope](#summary-of-the-test-scope)
+- [Testing methodology used and Summary of metrics and measures, including the number of findings, listed by severity level](#testing-methodology-used-and-summary-of-metrics-and-measures-including-the-number-of-findings-listed-by-severity-level)
+- [Metrics and Mesures](#metrics-and-measures)
+- [Objectives of the testing effort, including the main topic or purpose of the test and report](#objectives-of-the-testing-effort-including-the-main-topic-or-purpose-of-the-test-and-report)
+- [Statement of Scope](#statement-of-scope)
+- [Statement of Methodology](#statement-of-methodology)
+- [Reference used methodology](#reference-used-methodology)
+- [Statement of Limitations](#statement-of-limitations)
+- [Testing Narrative](#testing-narrative)
+- [Findings](#findings)
+- [Calculating and documenting the risks of the vulnerabilities, Common Vulnerability Scoring system, CVSS.](#calculating-and-documenting-the-risks-of-the-vulnerabilities-common-vulnerability-scoring-system-cvss)
+- [OWASP Risk Rating Methodology for estimating the risk of a vulnerability](#owasp-risk-rating-methodology-for-estimating-the-risk-of-vulnerability)
+- [Findings and recommendations for remediation](#findings-and-recommendations-for-remediation)
+- [Technical details necessary for IT, information security, and development teams to use to address the issues.](#Providing technical details necessary for IT, information security, and development teams to use to address the issues - Recommendations)
+- [Conclusion](#conlusion)
+ 
+<h3> Executive Summary</h3>
 
 <i><b>Ethical Security</b></i> company was contracted by Marketplace industry to conduct a penetration test in order to determine its exposures to a targeted attack. All activities were conducted in a manner that simulated a malicious actor engaged in a targeted attack against Marketplace industry.<br>
 
@@ -47,13 +36,12 @@
   <li>Backdoors in the operating system</li>
 </ul>  
 
-Efforts were placed on the identification and exploitation of security weaknesses that could allow a remote attacker to gain unauthorized access to organizational data. The attacks were conducted with the level of access that a general Internet user would have. The assessment was conducted in accordance with the recommendations outlined in NIST SP 800-1151 with all tests and actions being conducted under controlled conditions. <br><br>
-a.	<b>Brief Summary of Findings</b><br><br>
+Efforts were placed on the identification and exploitation of security weaknesses that could allow a remote attacker to gain unauthorized access to organizational data. The attacks were conducted with the level of access that a general Internet user would have. The assessment was conducted in accordance with the recommendations outlined in NIST SP 800-1151 with all tests and actions being conducted under controlled conditions.
+<h3>Brief Summary of Findings</h3>
 Initial reconnaissance of the <b>Marketplace’s</b> network resulted in the discovery of a few open TCP ports such as 22/TCP SSH Version: openSSH 7.6p1 Ubuntu0.3 and 80/TCP HTTP-Server-title: The Marketplace.<br><br>
 Steps:<br> (1) An examination of these ports revealed a <b>Cross Site Scripting (XSS), SQL Injection and Command Injection via SSH (Secure Shell) connection </b> vulnerabilities. Also, a <b>docker and a tar wildcard privilege escalation</b> vulnerability.<br> (2) After exploiting Marketplace’s webpage, we were able to gain access to an administration account with <b>session hijacking through XSS</b>.<br> (3) In addition, gaining access to the admin account we discovered that there is an <b>information exposure through query strings in URL</b>.<br> (4) The next move was to use <b>SQL injection commands in URL with Burp Suite tool</b> to exploit the database and take information. With the database’s exploitation we found database’s tables: <b> Users, usernames and passwords hashes and cracked them with John the Ripper tool </b>, also we found through database’s table:<b> <i>Messages</i>, a message to a user from the administrator/system for a SSH password change and the new password </b>.<br> (5) We continue with a <b>SSH connect to the specific user with the provided SSH password and we gain access to user’s system</b> with remote access through SSH connection.<br> (6) Finally, we <b>discovered a tar backup.tar * file in the user’s files and we exploit wildcard for privilege escalation to another user</b>. As we gain access to another user and found that he is <b>privileged to use docker, we exploit it with shell to escalate our privileges to root shell</b>.
 
-b. <b>Timeline</b>
-
+<h3>Timeline</h3>
 <table>
   <tr>
     <th>Steps</th>
@@ -197,7 +185,7 @@ b. <b>Timeline</b>
   </tr>
 </table>
 
-c.	<b>Summary of the test Scope</b><br>
+<h3>Summary of the test Scope</h3>
 
 The scope of this Penetration Test was limited to a single internet facing web application portal. This is a Marketplace application and the specific instantiation of the portal we were asked to test, was the vulnerabilities we could find. Also, we will perform a <b>black-box penetration testing</b> (pentesting) as external attackers-testers aiming at identifying vulnerabilities in the application and show exactly how. The landing page to the application under review was at the following address:
 <table>
@@ -210,8 +198,7 @@ The scope of this Penetration Test was limited to a single internet facing web a
     <td>https://marketplace.com</td>
   </tr>
 </table>
-<br>
-d.	<b>Testing Methodology Used and Summary of metrics and measures, including the number of findings, listed by severity level</b><br><br>
+<h3>Testing Methodology Used and Summary of metrics and measures, including the number of findings, listed by severity level</h3>
 <b>Firstly</b>, we used the <b>cyber kill chain</b> methodology, which is essentially a Lockheed Martin cybersecurity model that traces the stages of a cyber-attack, detects vulnerabilities, and assists security teams in stopping attacks at each point of the chain. The term kill chain was borrowed from the military, which refers to the framework of an attack. It consists of recognizing a target, dispatching it, making a judgment, issuing an order, and eventually destroying the target.
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/78affee0-4ef8-4f9a-8eb2-589a8cdd35a9)
@@ -235,7 +222,7 @@ We also used Penetration Testing Phases from NIST SP 800-115. In this process, w
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/a4f196b9-1a0b-41c0-aed7-293cf685fd4e)
 
-<b>Metrics and Measures</b><br><br>
+<h3>Metrics and Measures</h3>
 <b>Secondly</b>, we used the OWASP, or Open Web Application Security Project, which is a set of standards and guidelines for the security of web applications, and is often the starting point for IT personnel when initially venturing into the realm of penetration testing. OWASP provides several resources on its own to improve the security posture of both internal and external web applications by providing companies with a comprehensive list of vulnerability categories for web applications, as well as ways to mitigate or remediate them.<br><br>
 <b>The OWASP Top 10</b> is a standard awareness document for developers and web application security. It represents a broad consensus about the most critical security risks to web applications.<br>
 <table>
@@ -283,7 +270,7 @@ We also used Penetration Testing Phases from NIST SP 800-115. In this process, w
   </tr>
 </table>
 
-e.	<b>Objectives of the testing effort, including the main topic or purpose of the test and report</b><br><br>
+<h3>Objectives of the testing effort, including the main topic or purpose of the test and report</h3>
 The practice of analyzing and validating Marketplace application accomplishes what it is designed to do is known as software testing. The advantages of this testing include bug prevention, reduced development costs, and improved performance. The sooner development teams receive test feedback, the sooner they can address issues such as:
 <ul>
   <li>Architectural flaws </li>
@@ -293,8 +280,8 @@ The practice of analyzing and validating Marketplace application accomplishes wh
   <li>Scalability issues</li>
 </ul>  
 Penetration Testing is done in order to assess its vulnerability to a targeted attack. All operations were carried out in a way that imitated a malicious actor carrying out a targeted attack on the <b>Marketplace industry</b>.
-After the Penetration, team members can share status, goals, and test results thanks to reporting and analytics. Advanced tools incorporate project metrics and display the results in a dashboard. Teams can rapidly evaluate a project's overall health and monitor interactions between test, development, and other project parts.<br><br>
-2.	<b>Statement of Scope</b><br>
+After the Penetration, team members can share status, goals, and test results thanks to reporting and analytics. Advanced tools incorporate project metrics and display the results in a dashboard. Teams can rapidly evaluate a project's overall health and monitor interactions between test, development, and other project parts.
+<h3>Statement of Scope</h3>
 We performed an assessment of the Ethical Security Company Services in Greece in order to provide detailed analysis of: identification of application, system and network vulnerabilities; gaps in IT security governance; assessment of patching methodologies; current network security capabilities and potential existing security incidents. The assessment and reporting will be based on the NIST 800-53 MODERATE security controls.<br><br>
 
 <table>
@@ -360,7 +347,7 @@ We performed an assessment of the Ethical Security Company Services in Greece in
   </tr>
 </table>
 
-3.<b> Statement of Methodology</b><br><br>
+<h3>Statement of Methodology</h3>
 We used the <b>Open Web Application Security Project (OWASP)</b> framework that offers advice on how to create, buy, and maintain trustworthy and secure software applications. OWASP is well-known for its popular Top 10 list of web application security flaws. The OWASP Biggest 10 list of security vulnerabilities is based on developer community opinion on the top security dangers. Every few years, it is revised as hazards alter and new ones develop. <br>
 Some of these Web security vulnerabilities have been found at Marketplace’s Web Application, such as XSS, SQL Injection and Command Injection.<br><br>
 <b>Cross-Site Scripting (XSS)</b> attacks occur when:<br>
@@ -375,11 +362,10 @@ Some of these Web security vulnerabilities have been found at Marketplace’s We
 </ol>
 <b>Command injection</b> is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application. Command injection attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell.<br>
 In this attack, the attacker-supplied operating system commands are usually executed with the privileges of the vulnerable application. Command injection attacks are possible largely due to insufficient input validation.
-<br>
-<br>
-4. <b>Statement of Limitations</b><br><br>
 
-<b>Limitation of Time</b><br>
+<h3>Statement of Limitations</h3>
+
+<h3>Limitation of Time</h3>
 When we performed penetration testing, we had a timeboxed assessment that needed to be completed in a predefined time period. The testing team has to identify potential threats and vulnerabilities, and produce results within this specified time period. This time of period was:
 <br>
 <table>
@@ -424,13 +410,11 @@ When we performed penetration testing, we had a timeboxed assessment that needed
     <td>Denied</td>
   </tr>
 </table>
-<br>
-<b>Limitation of Access</b><br>
-We had Limitation of Access because we performed Black box penetration test and not a White box network vulnerability assessment, which helps to expose security threats by attacking the network from different angles. Also, for applications, we could conduct code reviews that will help us discover security threats and weaknesses that might not be apparent from dynamic testing such as encryption algorithms, how passwords are stored, etc.<br><br>
 
-5.<b> Testing Narrative</b>
-<br>
-<br>
+<h3>Limitation of Access</h3>
+We had Limitation of Access because we performed Black box penetration test and not a White box network vulnerability assessment, which helps to expose security threats by attacking the network from different angles. Also, for applications, we could conduct code reviews that will help us discover security threats and weaknesses that might not be apparent from dynamic testing such as encryption algorithms, how passwords are stored, etc.
+
+<h3>Testing Narrative</h3>
 Remote System Discovery (nmap)– Reconnaissance/Discovery
 <br><br>
 For the purposes of this penetration test, Marketplace provided minimal information outside of the organizational <b>domain name: marketplace.com</b>. The intent was to closely simulate an adversary without any internal information. To avoid targeting systems that were not owned by Marketplace Industry, all identified assets were submitted for ownership verification before any attacks were conducted. 
@@ -596,23 +580,19 @@ After the command injection in Michael’s system and exploiting docker using th
 
 We completed the 3rd cycle of Cyber Kill Chain and Penetration Testing Phases, while we gained access as Jake via SSH, then exploited tar file with wildcard in Jake’s system and gain access as Michael and finally we exploited docker because we had Michael’s privileges and gained access as root.
 
-6.<b> Findings</b><br><br>
-a.<b> Calculating and documenting the risks of the vulnerabilities, Common Vulnerability Scoring system, CVSS.</b><br>
-<br>
+<h3>Findings</h3>
+<h3>Calculating and documenting the risks of the vulnerabilities, Common Vulnerability Scoring system, CVSS.</h3>
 The <b>Common Vulnerability Scoring System (CVSS)</b> is a free and open industry standard for determining the severity of computer system security flaws. CVSS seeks to assign vulnerability severity levels, allowing responders to prioritize responses and resources based on danger. Scores are determined by an algorithm that takes into account numerous variables that approximate the ease and impact of an exploit. The severity scale runs from 0 to 10, with 10 being the most severe. 
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/fe379600-84fe-4001-9719-b4bc8ed2860d)
 
-b.<b> OWASP Risk Rating Methodology for estimating the risk of vulnerability</b><br>
-<br>
+<h3>OWASP Risk Rating Methodology for estimating the risk of vulnerability</h3>
 The <b>OWASP Risk Rating Methodology</b> was developed by Jeff Williams, one of the OWASP organization's founders, as a way to quickly and correctly analyze the possibility and effect of a web application vulnerability. OWASP Risk Rating Methodology based on OWASP Risk Assessment Framework, which consist of Static application security testing and Risk Assessment tools, even though there are many SAST tools available for testers, but the compatibility and the environment setup process is complex.
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/56c015dd-fdd4-4ac7-a2c0-4b1e002983a1)
 
-7.<b> Findings and recommendations for remediation</b><br>
-<br>
-a. <b>Providing technical details necessary for IT, information security, and development teams to use to address the issues - Recommendations</b><br>
-<br>
+<h3>Findings and recommendations for remediation</h3>
+<h3>Providing technical details necessary for IT, information security, and development teams to use to address the issues - Recommendations</h3>
 <b>XSS Defense Philosophy</b><br>
 <br>
 An attacker must insert and execute malicious content in a webpage for an XSS attack to be successful. Each variable in a web application must be secured. Perfect injection resistance is achieved by ensuring that all variables are validated and then escaped or sanitized. Any variable that is not subjected to this method is a potential flaw. Frameworks make it simple to validate variables and escape or sanitize them.<br><br>
@@ -648,7 +628,7 @@ Full Documentation:<br>
 •	https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
 <br>
 
-8.<b> Conclusion</b><br>
+<h3>Conclusion</h3>
 <br>
 <b>Marketplace industry</b> experienced a series of control failures, resulting in the total compromise of crucial corporate assets. If a malicious actor had exploited these flaws, they would have had a significant impact on Marketplace industry operations. Current password reuse policies and deployed access controls are insufficient to mitigate the effect of the reported vulnerabilities.<br>
 <br>
@@ -700,8 +680,7 @@ These penetration test objectives were met. A targeted attack on Marketplace ind
 Marketplace industry’s security team must follow the OWASP ModSecurity Core Rule Set (CRS), which is a collection of generic attack detection rules that may be used with ModSecurity or other compatible web application firewalls.
 <br>
 <br>
-<b>Disclaimer</b><br>
-<br>
+<h3>Disclaimer</h3>
 <b>Ethical Security</b> company conducted this testing on the applications and systems that existed as of [ORIGINALTESTDATE]. Information
 security threats are continually changing, with new vulnerabilities discovered on a daily basis, and no application can ever be 100%
 secure no matter how much security testing is conducted. This report is intended only to provide documentation that [CLIENT] has
